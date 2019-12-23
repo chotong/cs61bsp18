@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 
+import sun.net.www.content.text.PlainTextInputStream;
+
 public class NBody {
     public static double readRadius(String file) {
         In in = new In(file);
@@ -9,11 +11,11 @@ public class NBody {
         return secondItemInFile;
     }
 
-    public static Body[] readBodies(String file) {
+    public static Planet[] readBodies(String file) {
         In in = new In(file);
         int n = in.readInt();
         double radius = in.readDouble();
-        Body[] bodies = new Body[n];
+        Planet[] bodies = new Planet[n];
         int i = 0;
         for (i = 0; i < n; i++) {
             double xPos = in.readDouble();
@@ -22,7 +24,7 @@ public class NBody {
             double yVel = in.readDouble();
             double mass = in.readDouble();
             String name = in.readString();
-            bodies[i] = new Body(xPos, yPos, xVel, yVel, mass, name);
+            bodies[i] = new Planet(xPos, yPos, xVel, yVel, mass, name);
         }
         return bodies;
     }
@@ -33,13 +35,13 @@ public class NBody {
         double time = 0;
         String filename = args[2];
         double radius = readRadius(filename);
-        Body[] bodies = readBodies(filename);
+        Planet[] bodies = readBodies(filename);
         int N = bodies.length;
 
         StdDraw.setScale(-readRadius(args[2]), readRadius(args[2]));
         StdDraw.clear();
         StdDraw.picture(0, 0, "images/starfield.jpg");
-        for (Body i : bodies) {
+        for (Planet i : bodies) {
             i.draw();
         }
         StdDraw.enableDoubleBuffering();
@@ -56,7 +58,7 @@ public class NBody {
             }
 
             StdDraw.picture(0, 0, "images/starfield.jpg");
-            for (Body b : bodies) {
+            for (Planet b : bodies) {
                 b.draw();
             }
             StdDraw.show();
