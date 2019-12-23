@@ -11,7 +11,7 @@ public class NBody {
         return secondItemInFile;
     }
 
-    public static Planet[] readBodies(String file) {
+    public static Planet[] readPlanets(String file) {
         In in = new In(file);
         int n = in.readInt();
         double radius = in.readDouble();
@@ -35,7 +35,7 @@ public class NBody {
         double time = 0;
         String filename = args[2];
         double radius = readRadius(filename);
-        Planet[] bodies = readBodies(filename);
+        Planet[] bodies = readPlanets(filename);
         int N = bodies.length;
 
         StdDraw.setScale(-readRadius(args[2]), readRadius(args[2]));
