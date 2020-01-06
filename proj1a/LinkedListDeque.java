@@ -31,7 +31,7 @@ public class LinkedListDeque<T> {
     public void addLast(T item) {
         Node node = new Node(sentinel.pre, item, sentinel);
         sentinel.pre.next = node;
-        sentinel.next = node;
+        sentinel.pre = node;
         size += 1;
     }
 
@@ -49,6 +49,7 @@ public class LinkedListDeque<T> {
             System.out.print(node.item + " ");
             node = node.next;
         }
+        System.out.println();
     }
 
     public T removeFirst() {
