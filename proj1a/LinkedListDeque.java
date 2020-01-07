@@ -6,7 +6,6 @@ public class LinkedListDeque<T> {
         Node pre;
         T item;
         Node next;
-
         Node(Node l, T f, Node r) {
             pre = l;
             item = f;
@@ -82,7 +81,6 @@ public class LinkedListDeque<T> {
         if (index > size) {
             return null;
         }
-
         else {
             Node node = sentinel.next;
             for (int i = index; i > 0; i--) {
@@ -97,7 +95,6 @@ public class LinkedListDeque<T> {
         if (index > size) {
             return null;
         }
-
        else {
             return getRecursiveHelper(sentinel.next, index);
         }
@@ -107,7 +104,6 @@ public class LinkedListDeque<T> {
         if (index == 0) {
             return curr.item;
         }
-
         else {
             // curr = curr.next;
             return getRecursiveHelper(curr.next, index - 1);
