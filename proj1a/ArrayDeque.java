@@ -30,7 +30,7 @@ public class ArrayDeque<T> {
     }
 
     private void resize(int i) {
-        Item[] a = (Item[]) new Object[i];
+        T[] a = (T[]) new Object[i];
         int p = plusOne(nextFirst);
         for (int j = 0; j < size; j++) {
             a[j] = items[p];
@@ -84,7 +84,7 @@ public class ArrayDeque<T> {
         items[plusOne(nextFirst)] = null;
         size--;
         nextFirst = plusOne(nextFirst);
-        if (items.length >= 16 && size < items.length * MIN_USAGE_RATIO) {
+        if (items.length >= 16 && size < items.length * 0.25) {
             resize(items.length / 2);
         }
         return a;
@@ -99,7 +99,7 @@ public class ArrayDeque<T> {
         items[minusOne(nextLast)] = null;
         size--;
         nextLast = minusOne(nextLast);
-        if (items.length >= 16 && size < items.length * MIN_USAGE_RATIO) {
+        if (items.length >= 16 && size < items.length * 0.25) {
             resize(items.length / 2);
         }
         return a;
