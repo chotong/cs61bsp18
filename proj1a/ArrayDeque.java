@@ -91,7 +91,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        if (items[minusOne(nextLast)] = null) {
+        if (items[minusOne(nextLast)] == null) {
             return null;
         }
         
