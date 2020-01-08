@@ -11,13 +11,13 @@ public class ArrayDeque<T> {
         nextLast = 5;
     }
     
-    private int minusOne(int index) {
-        if (index - 1 < 0) {
-            index = items.length - 1;
+    private int minusOne(int i) {
+        if (i - 1 < 0) {
+            i = items.length - 1;
         } else {
-            index--;
+            i--;
         }
-        return index;
+        return i;
     }
 
     private int plusOne(int i) {
@@ -29,14 +29,23 @@ public class ArrayDeque<T> {
         return i;
     }
 
-    private void resize(int capacity) {
-        Item[] a = (Item[]) new Object[capacity];
+    private void resize(int i) {
+        Item[] a = (Item[]) new Object[i];
+        int p = plusOne(nextFirst);
+        for (int j = 0; j < size; j++) {
+            a[j] = items[p];
+            p = plusOne(p);
+            items = a;
+            nextFirst = i - 1;
+            nextLast = size;
+        }
     }
     
     public void addFirst(T item) {
         if (size == items.length) {
             resize(size * 2);
         }
+
         items[nextFirst] = item;
         size++;
         nextFirst = minusOne(nextFirst);
@@ -46,6 +55,7 @@ public class ArrayDeque<T> {
         if (size == items.length) {
             resize(size * 2);
         }
+
         items[nextLast] = item;
         size++;
         nextLast = plusOne(nextLast);
@@ -66,14 +76,45 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
+        if (items[plusOne(nextFirst)] == null) {
+            return null;
+        }
         
+        T a = items[plusOne(nextFirst)];
+        items[plusOne(nextFirst)] = null;
+        size--;
+        nextFirst = plusOne(nextFirst);
+        if (items.length >= 16 && size < items.length * MIN_USAGE_RATIO) {
+            resize(items.length / 2);
+        }
+        return a;
     }
 
     public T removeLast() {
+        if (items[minusOne(nextLast)] = null) {
+            return null;
+        }
         
+        T a = items[minusOne(nextLast)];
+        items[minusOne(nextLast)] = null;
+        size--;
+        nextLast = minusOne(nextLast);
+        if (items.length >= 16 && size < items.length * MIN_USAGE_RATIO) {
+            resize(items.length / 2);
+        }
+        return a;
     }
 
     public T get(int index) {
-        
+        if (index >= size) {
+            return null;
+        } else {
+            int diff = size - 1 - index;
+            int last = nextLast;
+            for (int i = 0; i < diff; i++) {
+                last = minusOne(last);
+            }
+            return items[last];
+        }
     }
 }
