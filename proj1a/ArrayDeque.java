@@ -7,8 +7,8 @@ public class ArrayDeque<T> {
     public ArrayDeque() {
         items = (T[]) new Object[8];
         size = 0;
-        nextFirst = size + 4;
-        nextLast = size + 5;
+        nextFirst = 4;
+        nextLast = 5;
     }
     
     private int minusOne(int index) {
@@ -60,7 +60,9 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-
+        for (int i = plusOne(nextFirst); i != nextLast; i = plusOne(nextFirst)) {
+            System.out.print(items[nextFirst] + " ");
+        }
     }
 
     public T removeFirst() {
