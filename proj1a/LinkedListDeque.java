@@ -63,7 +63,7 @@ public class LinkedListDeque<T> {
         }
     }
     
-    public T removeLast(){
+    public T removeLast() {
         if (isEmpty()) {
             return null;
         } else {
@@ -103,5 +103,15 @@ public class LinkedListDeque<T> {
             // curr = curr.next;
             return getRecursiveHelper(curr.next, index - 1);
         }
+    }
+
+    public static void main(String[] args) {
+
+        LinkedListDeque<Integer> a = new LinkedListDeque<>();
+        a.addFirst(1);
+        a.addFirst(2);
+        a.addLast(3);
+        a.printDeque();
+        
     }
 }
