@@ -10,7 +10,7 @@ public class ArrayDeque<T> {
         nextFirst = 4;
         nextLast = 5;
     }
-    
+
     private int minusOne(int i) {
         if (i - 1 < 0) {
             i = items.length - 1;
@@ -21,7 +21,7 @@ public class ArrayDeque<T> {
     }
 
     private int plusOne(int i) {
-        if (i +1 > items.length- 1) {
+        if (i + 1 > items.length - 1) {
             i = 0;
         } else {
             i++;
@@ -40,7 +40,7 @@ public class ArrayDeque<T> {
         nextFirst = i - 1;
         nextLast = size;
     }
-    
+
     public void addFirst(T item) {
         if (size == items.length) {
             resize(size * 2);
@@ -76,7 +76,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        if (size==0) {
+        if (size == 0) {
             return null;
         } else {
             T a = items[plusOne(nextFirst)];
@@ -91,10 +91,10 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        if (size==0) {
+        if (size == 0) {
             return null;
         }
-        
+
         T a = items[minusOne(nextLast)];
         items[minusOne(nextLast)] = null;
         size--;
@@ -110,32 +110,14 @@ public class ArrayDeque<T> {
             return null;
         } else {
             int p = plusOne(nextFirst);
-            for(int i =0; i < index; i++){
+            for (int i = 0; i < index; i++) {
                 p = plusOne(p);
             }
-            
             return items[p];
         }
     }
-    // public static void main(String[] args) {
-    //     ArrayDeque<Integer> a = new ArrayDeque<>();
-    //     a.addFirst(0);
-    //     // a.get(0);
-    //     a.addLast(2);
-    //     a.addFirst(3);
-    //     a.addFirst(4);
-    //     a.addFirst(5);
-    //     a.removeLast();
-    //     // a.get(3);
-    //     a.addLast(8);
-    //     a.addLast(9);
-    //     a.addFirst(10);
-    //     a.addLast(11);
-    //     a.addLast(12);
-    //     System.out.println(a.removeFirst());
-    //     System.out.println(a.removeFirst());   
-    // }
 }
+
 
     
     
