@@ -35,8 +35,8 @@ public class ArrayDeque<T> {
         for (int j = 0; j < size; j++) {
             a[j] = items[p];
             p = plusOne(p);
-            items = a;
         }
+        items = a;
         nextFirst = i - 1;
         nextLast = size;
     }
@@ -76,7 +76,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        if (items[plusOne(nextFirst)] == null) {
+        if (size==0) {
             return null;
         } else {
             T a = items[plusOne(nextFirst)];
@@ -91,7 +91,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        if (items[minusOne(nextLast)] == null) {
+        if (size==0) {
             return null;
         }
         
@@ -117,6 +117,24 @@ public class ArrayDeque<T> {
             return items[p];
         }
     }
+    // public static void main(String[] args) {
+    //     ArrayDeque<Integer> a = new ArrayDeque<>();
+    //     a.addFirst(0);
+    //     // a.get(0);
+    //     a.addLast(2);
+    //     a.addFirst(3);
+    //     a.addFirst(4);
+    //     a.addFirst(5);
+    //     a.removeLast();
+    //     // a.get(3);
+    //     a.addLast(8);
+    //     a.addLast(9);
+    //     a.addFirst(10);
+    //     a.addLast(11);
+    //     a.addLast(12);
+    //     System.out.println(a.removeFirst());
+    //     System.out.println(a.removeFirst());   
+    // }
 }
 
     
