@@ -36,9 +36,9 @@ public class ArrayDeque<T> {
             a[j] = items[p];
             p = plusOne(p);
             items = a;
-            nextFirst = i - 1;
-            nextLast = size;
         }
+        nextFirst = i - 1;
+        nextLast = size;
     }
     
     public void addFirst(T item) {
@@ -78,16 +78,16 @@ public class ArrayDeque<T> {
     public T removeFirst() {
         if (items[plusOne(nextFirst)] == null) {
             return null;
+        } else {
+            T a = items[plusOne(nextFirst)];
+            items[plusOne(nextFirst)] = null;
+            size--;
+            nextFirst = plusOne(nextFirst);
+            if (items.length >= 16 && size < (items.length * 0.25)) {
+                resize(items.length / 2);
+            }
+            return a;
         }
-        
-        T a = items[plusOne(nextFirst)];
-        items[plusOne(nextFirst)] = null;
-        size--;
-        nextFirst = plusOne(nextFirst);
-        if (items.length >= 16 && size < items.length * 0.25) {
-            resize(items.length / 2);
-        }
-        return a;
     }
 
     public T removeLast() {
@@ -109,12 +109,23 @@ public class ArrayDeque<T> {
         if (index >= size) {
             return null;
         } else {
-            int diff = size - 1 - index;
-            int last = nextLast;
-            for (int i = 0; i < diff; i++) {
-                last = minusOne(last);
+            int p = plusOne(nextFirst);
+            for(int i =0; i < index; i++){
+                p = plusOne(p);
             }
-            return items[last];
+            
+            return items[p];
         }
     }
 }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
