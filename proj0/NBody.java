@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 
-import sun.net.www.content.text.PlainTextInputStream;
-
 public class NBody {
     public static double readRadius(String file) {
         In in = new In(file);
